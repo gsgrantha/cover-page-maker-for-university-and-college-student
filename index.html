@@ -216,9 +216,16 @@
             align-items: center;
             gap: 12px;
             margin-bottom: 45px;
+            width: 100%;
         }
 
-        .info-row { display: flex; justify-content: center; width: 100%; gap: 8px; }
+        /* FIX: surgical edit to change the text aligning behavior */
+        .info-row { 
+            display: block; /* turned from flex into a block level element */
+            width: 100%; 
+            text-align: center; /* now centers each natural line of text, giving equal margins */
+        }
+
         .label-theme { color: var(--theme-blue); }
         .value-text { color: #000; text-transform: uppercase; }
 
@@ -272,17 +279,8 @@
             #page-container { box-shadow: none; margin: 0; }
         }
     </style>
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-FXL6FQ1EBC"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-FXL6FQ1EBC');
-</script>
 </head>
-<body>
+<body oncontextmenu="return false;"> 
 
     <div class="controls">
         <h2>Cover Page Details</h2>
@@ -431,6 +429,15 @@
     </div>
 
     <script>
+        // protection script to disable text selection for the cover page generator ui
+        document.onkeydown = function(e) {
+            if (e.keyCode == 123) return false; // F12
+            if (e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) return false;
+            if (e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) return false;
+            if (e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) return false;
+            if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) return false; // View Source
+        };
+
         function handleLogoUpload() {
             const input = document.getElementById('logoInput');
             if (input.files && input.files[0]) {
@@ -501,5 +508,4 @@
         };
     </script>
 </body>
-
 </html>
