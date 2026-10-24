@@ -1391,32 +1391,34 @@
 
     <div class="form-group full-width"><label>Upload Logo</label><input type="file" id="logoInput" accept="image/*" onchange="handleLogoUpload()">
     </div>
-    <div class="form-group full-width"><label>University Name</label><input type="text" id="i_uni" value="UNIVERSITY OF FRONTIER TECHNOLOGY, BANGLADESH" oninput="update()">
+    <div class="form-group full-width"><label>University Name</label><input type="text" id="i_uni" placeholder="Enter university name" oninput="update()">
     </div>
-    <div class="form-group full-width"><label>Heading (Assignment/Lab Report)</label><input type="text" id="i_main_title" value="ASSIGNMENT" oninput="update()">
+    <div class="form-group full-width"><label>Heading (Assignment/Lab Report)</label><input type="text" id="i_main_title" placeholder="e.g. ASSIGNMENT, LAB REPORT" oninput="update()">
     </div>
-    <div class="form-group"><label>Course Code</label><input type="text" id="i_cc" value="CSE-113" oninput="update()">
+    <div class="form-group"><label>Course Code</label><input type="text" id="i_cc" placeholder="e.g. CSE-113" oninput="update()">
     </div>
     <div class="form-group">
       <label>Submission Date</label><input type="date" id="i_date_picker" onchange="handleDateChange()"><input type="hidden" id="i_date">
     </div>
-    <div class="form-group full-width"><label>Course Title</label><input type="text" id="i_ct" value="DATA STRUCTURES AND ALGORITHM" oninput="update()">
+    <div class="form-group full-width"><label>Course Title</label><input type="text" id="i_ct" placeholder="Enter course title" oninput="update()">
     </div>
 
     <h3 class="full-width"><b>SUBMITTED BY</b></h3>
-    <div class="form-group"><label>Name</label><input id="i_sname" value="GRANTHA SAHA" oninput="update()"></div>
-    <div class="form-group"><label>ID</label><input id="i_sid" value="DSE-2305010" oninput="update()"></div>
-    <div class="form-group"><label>Section</label><input id="i_ssec" value="A" oninput="update()"></div>
-    <div class="form-group full-width"><label>Department</label><input id="i_sdept" value="DATA SCIENCE AND ENGINEERING" oninput="update()">
+    <div class="form-group"><label>Name</label><input id="i_sname" placeholder="Your full name" oninput="update()">
     </div>
-    <div class="form-group"><label>Semester</label><input id="i_sses" value="2023-24" oninput="update()"></div>
+    <div class="form-group"><label>ID</label><input id="i_sid" placeholder="Your student ID" oninput="update()"></div>
+    <div class="form-group"><label>Section</label><input id="i_ssec" placeholder="e.g. A" oninput="update()"></div>
+    <div class="form-group full-width"><label>Department</label><input id="i_sdept" placeholder="Your department" oninput="update()">
+    </div>
+    <div class="form-group"><label>Semester</label><input id="i_sses" placeholder="e.g. 2023-24" oninput="update()">
+    </div>
 
     <h3 class="full-width"><b>SUBMITTED TO</b></h3>
-    <div class="form-group full-width"><label>Teacher Name</label><input id="i_tname" value="SHARAD HASAN" oninput="update()">
+    <div class="form-group full-width"><label>Teacher Name</label><input id="i_tname" placeholder="Teacher's full name" oninput="update()">
     </div>
-    <div class="form-group full-width"><label>Designation</label><input id="i_tdesig" value="LECTURER" oninput="update()">
+    <div class="form-group full-width"><label>Designation</label><input id="i_tdesig" placeholder="e.g. Lecturer" oninput="update()">
     </div>
-    <div class="form-group full-width"><label>Teacher Department</label><input id="i_tdept" value="DEPARTMENT OF DATA SCIENCE AND ENGINEERING" oninput="update()">
+    <div class="form-group full-width"><label>Teacher Department</label><input id="i_tdept" placeholder="Teacher's department" oninput="update()">
     </div>
 
     <button class="btn-download" onclick="genPDF()">GENERATE &amp; DOWNLOAD PDF</button>
@@ -1511,7 +1513,7 @@ const picker=document.getElementById('i_date_picker');
 if(picker.value){
 const d=new Date(picker.value);
 DATE=String(d.getDate()).padStart(2,'0')+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+d.getFullYear();
-}
+}else{DATE='';}
 render();
 }
 function update(){render();}
@@ -1536,7 +1538,6 @@ try{
 t=parseInt(localStorage.getItem('cover_tpl_v2'))||1;
 LOGO=localStorage.getItem('user_logo_v3')||'';
 }catch(e){}
-document.getElementById('i_date_picker').value=new Date().toISOString().split('T')[0];
 handleDateChange();
 selectTpl(t>T.length?1:t);
 };
