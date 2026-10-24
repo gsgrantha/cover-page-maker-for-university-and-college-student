@@ -301,13 +301,13 @@
                 <p><b>Course Code:</b> Enter the unique code for your subject (e.g., CSE-113).</p>
                 <p><b>Submission Date:</b> Click the calendar icon to select the date you are handing it in. The system automatically formats this to DD-MM-YYYY for you.</p>
                 <p><b>Course Title:</b> Enter the full name of the subject (e.g., DATA STRUCTURES AND ALGORITHM).</p>
-                <p><b>Topic:</b> Enter the specific title of your assignment or experiment (e.g., GRAPH AND ALGORITHM).</p>
 
                 <h4>4. SUBMITTED BY (Your Information)</h4>
                 <p>Fill this section out accurately so your teacher knows who to grade:</p>
                 <ul>
                     <li><b>Name:</b> Your full legal name.</li>
                     <li><b>ID:</b> Your student registration or roll number.</li>
+                    <li><b>Section:</b> Your assigned class section (e.g., A, B, etc.).</li>
                     <li><b>Department:</b> Your specific major (e.g., Data Science and Engineering).</li>
                     <li><b>Semester:</b> Your current academic session or semester (e.g., 1st Year 2nd Semester).</li>
                 </ul>
@@ -355,14 +355,11 @@
             <label>Course Title</label>
             <input type="text" id="i_ct" value="DATA STRUCTURES AND ALGORITHM" oninput="update()">
         </div>
-        <div class="form-group full-width">
-            <label>Topic</label>
-            <input type="text" id="i_topic" value="GRAPH AND ALGORITHM" oninput="update()">
-        </div>
 
         <h3 class="full-width"><b>SUBMITTED BY</b></h3>
         <div class="form-group"><label>Name</label><input id="i_sname" value="GRANTHA SAHA" oninput="update()"></div>
         <div class="form-group"><label>ID</label><input id="i_sid" value="DSE-2305010" oninput="update()"></div>
+        <div class="form-group"><label>Section</label><input id="i_ssec" value="A" oninput="update()"></div>
         <div class="form-group full-width"><label>Department</label><input id="i_sdept" value="DATA SCIENCE AND ENGINEERING" oninput="update()"></div>
         <div class="form-group"><label>Semester</label><input id="i_sses" value="2023-24" oninput="update()"></div>
 
@@ -400,8 +397,6 @@
                     <div class="info-row"><span class="label-theme">DATE OF SUBMISSION :</span><span class="value-text" id="o_date"></span></div>
                     <div style="height: 10px;"></div>
                     <div class="info-row"><span class="label-theme">COURSE TITLE :</span><span class="value-text" id="o_ct"></span></div>
-                    <div style="height: 10px;"></div>
-                    <div class="info-row"><span class="label-theme">TOPIC :</span><span class="value-text" id="o_topic"></span></div>
                 </div>
 
                 <div class="submitted-container">
@@ -410,6 +405,7 @@
                         <div class="student-grid">
                             <div>NAME</div><div>:</div><div id="o_sname"></div>
                             <div>STUDENT ID</div><div>:</div><div id="o_sid"></div>
+                            <div>SECTION</div><div>:</div><div id="o_ssec"></div>
                             <div>DEPARTMENT</div><div>:</div><div id="o_sdept"></div>
                             <div>SEMESTER</div><div>:</div><div id="o_sses"></div>
                         </div>
@@ -469,8 +465,8 @@
             const fields = {
                 'i_uni': 'o_uni', 'i_main_title': 'o_main_title',
                 'i_cc': 'o_cc', 'i_date': 'o_date',
-                'i_ct': 'o_ct', 'i_topic': 'o_topic',
-                'i_sname': 'o_sname', 'i_sid': 'o_sid',
+                'i_ct': 'o_ct', 
+                'i_sname': 'o_sname', 'i_sid': 'o_sid', 'i_ssec': 'o_ssec',
                 'i_sdept': 'o_sdept', 'i_sses': 'o_sses',
                 'i_tname': 'o_tname', 'i_tdesig': 'o_tdesig', 'i_tdept': 'o_tdept'
             };
