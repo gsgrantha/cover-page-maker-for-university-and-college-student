@@ -1317,6 +1317,24 @@
       line-height: 1.25
     }
 
+    .r2 {
+      margin-top: 9px;
+      text-align: center
+    }
+
+    .r2 i {
+      display: block;
+      font-size: 8.5pt;
+      letter-spacing: 2px;
+      font-style: normal;
+      color: #9dbcf5
+    }
+
+    .r2 b {
+      display: block;
+      font-size: 11pt
+    }
+
     @media print {
       .controls {
         display: none
@@ -1450,7 +1468,8 @@ const WM=()=>LOGO?`<img class="wm" src="${LOGO}">`:'';
 const KV=(d,sk)=>[['COURSE CODE',d.cc],['DATE OF SUBMISSION',d.date],['COURSE TITLE',d.ct]].filter(x=>x[0]!==sk).map(([a,b])=>`<div class="kv"${a==='COURSE TITLE'?' style="grid-column:1/-1"':''}><small>${a}</small><b>${b}</b></div>`).join('');
 const SR=d=>[['NAME',d.sname],['STUDENT ID',d.sid],['SECTION',d.ssec],['DEPARTMENT',d.sdept],['SEMESTER',d.sses]];
 const SG=d=>`<div class="sg">`+SR(d).map(([a,b])=>`<span>${a}</span><span>:</span><b>${b}</b>`).join('')+`</div>`;
-const TT=d=>`<div class="tt"><div>${d.tname}</div><div>${d.tdesig}</div><div>${d.tdept}</div></div>`;
+const TG=d=>[['NAME',d.tname],['DESIGNATION',d.tdesig],['DEPARTMENT',d.tdept]];
+const TT=d=>`<div class="sg">`+TG(d).map(([a,b])=>`<span>${a}</span><span>:</span><b>${b}</b>`).join('')+`</div>`;
 const R=rows=>rows.map(r=>`<tr><th>${r[0]}</th><td>${r[1]}</td></tr>`).join('');
 const BY=(d,c='')=>`<div><div class="bh ${c}">SUBMITTED BY</div>${SG(d)}</div>`;
 const TO=(d,c='')=>`<div><div class="bh ${c}">SUBMITTED TO</div>${TT(d)}</div>`;
@@ -1458,17 +1477,17 @@ const CARDS=d=>`<div class="g2"><div class="cd">${BY(d)}</div><div class="cd">${
 
 const T=[
 ["Classic Framed","#1a3d8f",d=>`<div class="tp t1"><div class="f1"><div class="f1i">${WM()}<div class="hd">${LG(95)}<div class="un">${d.uni}</div></div><div class="ti">${d.main_title}</div><div class="c1">${[['COURSE CODE',d.cc],['DATE OF SUBMISSION',d.date],['COURSE TITLE',d.ct]].map(([a,b])=>`<div><span>${a} : </span>${b}</div>`).join('')}</div><div class="sb">${BY(d,'bk')}${TO(d,'bk')}</div></div></div></div>`],
-["Modern Split","#0b2a6b",d=>`<div class="tp t2"><div class="s2l">${LOGO?`<div class="lc">${LG(110)}</div>`:'<div></div>'}<div class="un">${d.uni}</div><div class="ti">${d.main_title}</div><div class="s2t"><small>SUBMITTED TO</small>${TT(d)}</div></div><div class="s2r">${WM()}${KV(d)}${BY(d)}</div></div>`],
+["Modern Split","#0b2a6b",d=>`<div class="tp t2"><div class="s2l">${LOGO?`<div class="lc">${LG(110)}</div>`:'<div></div>'}<div class="un">${d.uni}</div><div class="ti">${d.main_title}</div><div class="s2t"><small>SUBMITTED TO</small>${TG(d).map(([a,b])=>`<div class="r2"><i>${a}</i><b>${b}</b></div>`).join('')}</div></div><div class="s2r">${WM()}${KV(d)}${BY(d)}</div></div>`],
 ["Hero Banner","#1a3d8f",d=>`<div class="tp t3"><div class="h3">${LG(90)}<div class="un">${d.uni}</div><div class="ti">${d.main_title}</div></div><div class="b3">${WM()}<div class="g2">${KV(d)}</div>${CARDS(d)}</div></div>`],
 ["Minimal Modern","#111111",d=>`<div class="tp t4">${WM()}<div>${LG(70)}<div class="un">${d.uni}</div></div><div><div class="ti">${d.main_title}</div><div class="sub4">${d.ct}</div></div><div class="g2">${KV(d,'COURSE TITLE')}</div><div class="g2 bt"><div><small>SUBMITTED BY</small>${SG(d)}</div><div><small>SUBMITTED TO</small>${TT(d)}</div></div></div>`],
-["Form Table","#000000",d=>`<div class="tp t5">${WM()}<table class="ft"><tr>${LOGO?`<td style="width:130px;text-align:center">${LG(100)}</td>`:''}<td class="un">${d.uni}</td></tr></table><div class="tb">${d.main_title}</div><table class="ft">${R([['COURSE CODE',d.cc],['DATE OF SUBMISSION',d.date],['COURSE TITLE',d.ct]])}</table><table class="ft"><tr><th colspan="2" class="hh">SUBMITTED BY</th></tr>${R(SR(d))}</table><table class="ft"><tr><th colspan="2" class="hh">SUBMITTED TO</th></tr>${R([['NAME',d.tname],['DESIGNATION',d.tdesig],['DEPARTMENT',d.tdept]])}</table></div>`],
-["Elegant Certificate","#1a3d8f",d=>`<div class="tp t6"><div class="o6"><div class="i6">${WM()}<div class="orn">❖ ❖ ❖</div>${LG(90)}<div class="un">${d.uni}</div><div class="ln6"></div><div class="ti">${d.main_title}</div><div class="c6">${d.ct}<br>COURSE CODE: ${d.cc}<br>${d.date}</div><div class="s6"><div><small>SUBMITTED BY</small><b>${d.sname}</b><br>ID: ${d.sid} &nbsp;|&nbsp; SECTION: ${d.ssec}<br>${d.sdept}<br>${d.sses}</div><div><small>SUBMITTED TO</small>${TT(d)}</div></div></div></div></div>`],
+["Form Table","#000000",d=>`<div class="tp t5">${WM()}<table class="ft"><tr>${LOGO?`<td style="width:130px;text-align:center">${LG(100)}</td>`:''}<td class="un">${d.uni}</td></tr></table><div class="tb">${d.main_title}</div><table class="ft">${R([['COURSE CODE',d.cc],['DATE OF SUBMISSION',d.date],['COURSE TITLE',d.ct]])}</table><table class="ft"><tr><th colspan="2" class="hh">SUBMITTED BY</th></tr>${R(SR(d))}</table><table class="ft"><tr><th colspan="2" class="hh">SUBMITTED TO</th></tr>${R(TG(d))}</table></div>`],
+["Elegant Certificate","#1a3d8f",d=>`<div class="tp t6"><div class="o6"><div class="i6">${WM()}<div class="orn">❖ ❖ ❖</div>${LG(90)}<div class="un">${d.uni}</div><div class="ln6"></div><div class="ti">${d.main_title}</div><div class="c6">${d.ct}<br>COURSE CODE: ${d.cc}<br>${d.date}</div><div class="s6"><div><small>SUBMITTED BY</small>NAME: <b>${d.sname}</b><br>ID: <b>${d.sid}</b> &nbsp;|&nbsp; SECTION: <b>${d.ssec}</b><br>DEPARTMENT: <b>${d.sdept}</b><br>SEMESTER: <b>${d.sses}</b></div><div><small>SUBMITTED TO</small>${TG(d).map(([a,b])=>`${a}: <b>${b}</b>`).join('<br>')}</div></div></div></div></div>`],
 ["Geometric Corners","#1a3d8f",d=>`<div class="tp t7"><div class="tr7"></div><div class="br7"></div>${WM()}<div class="c7">${LG(90)}<div class="un">${d.uni}</div><div class="pill">${d.main_title}</div><div class="g2">${KV(d)}</div>${CARDS(d)}</div></div>`],
 ["Vertical Stripe","#000000",d=>`<div class="tp t8"><div class="st8"><span>${d.main_title}</span></div><div class="c8">${WM()}<div class="hd">${LG(85)}<div class="un">${d.uni}</div></div><div class="kvs">${KV(d)}</div>${BY(d)}${TO(d)}</div></div>`],
 ["Corporate Report","#000",d=>`<div class="tp t9">${WM()}<div class="h9"><div>${LG(80)}</div><div class="un">${d.uni}</div></div><div class="t9t"><div class="ti">${d.main_title}</div></div><div class="g2 bx">${KV(d)}</div><div class="f9">${BY(d)}${TO(d)}</div></div>`],
 ["Soft Cards","#1a3d8f",d=>`<div class="tp t10">${WM()}<div class="cd w hc">${LG(80)}<div class="un">${d.uni}</div></div><div class="chip">${d.main_title}</div><div class="cd w"><div class="ch">COURSE INFORMATION</div><div class="g2">${KV(d)}</div></div><div class="cd w"><div class="ch">SUBMITTED BY</div>${SG(d)}</div><div class="cd w"><div class="ch">SUBMITTED TO</div>${TT(d)}</div></div>`],
 ["Bottom Band","#000000",d=>`<div class="tp t11">${WM()}<div class="a11">${LG(95)}<div class="un">${d.uni}</div><div class="ti">${d.main_title}</div><div class="kvc">${KV(d)}</div></div><div class="z11">${BY(d,'wh')}${TO(d,'wh')}</div></div>`],
-["Lab Report Mono","#222222",d=>`<div class="tp t12">${WM()}<div class="m12">${LG(70)}<div>[ ${d.uni} ]</div></div><div class="mt">${d.main_title}</div><div class="mb">${[['COURSE_CODE',d.cc],['DATE',d.date],['COURSE_TITLE',d.ct]].map(([a,b])=>`<div>&gt; ${a}: <b>${b}</b></div>`).join('')}</div><div class="mb"><div class="mh">// SUBMITTED_BY</div>${SR(d).map(([a,b])=>`<div>&gt; ${a}: <b>${b}</b></div>`).join('')}</div><div class="mb"><div class="mh">// SUBMITTED_TO</div><div>&gt; <b>${d.tname}</b></div><div>&gt; ${d.tdesig}</div><div>&gt; ${d.tdept}</div></div></div>`],
+["Lab Report Mono","#222222",d=>`<div class="tp t12">${WM()}<div class="m12">${LG(70)}<div>[ ${d.uni} ]</div></div><div class="mt">${d.main_title}</div><div class="mb">${[['COURSE_CODE',d.cc],['DATE',d.date],['COURSE_TITLE',d.ct]].map(([a,b])=>`<div>&gt; ${a}: <b>${b}</b></div>`).join('')}</div><div class="mb"><div class="mh">// SUBMITTED_BY</div>${SR(d).map(([a,b])=>`<div>&gt; ${a}: <b>${b}</b></div>`).join('')}</div><div class="mb"><div class="mh">// SUBMITTED_TO</div>${TG(d).map(([a,b])=>`<div>&gt; ${a}: <b>${b}</b></div>`).join('')}</div></div>`],
 ["Black & Blue","#4d86f0",d=>`<div class="tp t13">${WM()}<div class="hd d13">${LG(90)}<div class="un">${d.uni}</div></div><div class="ti">${d.main_title}</div><div class="g2 cd">${KV(d)}</div>${CARDS(d)}</div>`]
 ];
 
